@@ -1,10 +1,10 @@
 // Go-address gets the IP address when given a *http.Request object. By passing
-// "nil" as the "header" argument you are asking to read the IP from r.RemoteAddr.
+// nil as the header argument you are asking to read the IP from r.RemoteAddr.
 //
 //  addr, err := GetAddr(r, nil)
 //
 // You can optionally pass a string to specify to look at a header rather than the remote
-// address. This is useful for when serving requests behind a proxy. For example
+// address. This is useful when serving requests behind a proxy. For example
 // Heroku passes through the remote IP in the header "X-Forwarded-For".
 //
 //  addr, err := GetAddr(r, "X-Forwarded-For")
