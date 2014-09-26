@@ -29,7 +29,7 @@ func TestGetAddrWithPort(t *testing.T) {
 	}
 }
 
-func TestgetAddrWithoutPort(t *testing.T) {
+func TestGetAddrWithoutPort(t *testing.T) {
 	req.RemoteAddr = "0.0.0.0"
 
 	address, err := Get(req, nil)
@@ -42,7 +42,7 @@ func TestgetAddrWithoutPort(t *testing.T) {
 	}
 }
 
-func TestgetAddrWithHeader(t *testing.T) {
+func TestGetAddrWithHeader(t *testing.T) {
 	req.Header.Set("HTTP_X_FORWARDED_FOR", "1.1.1.1:80, 2.2.2.2:80")
 
 	address, err := Get(req, "HTTP_X_FORWARDED_FOR")
@@ -55,9 +55,13 @@ func TestgetAddrWithHeader(t *testing.T) {
 	}
 }
 
-func TestgetAddrWithNoAddress(t *testing.T) {
-	_, err := Get(req, "MISSING_ADDRESS")
-	if err == nil {
-		t.Fatalf("A missing address should return an error")
+func TestGetAddrWithNoAddressShouldFallback(t *testing.T) {
+	address, err := Get(req, "MISSING_ADDRESS")
+	if err != nil {
+		t.Fatalf("%s", err.Error())
+	}
+
+	if address != "0.0.0.0" {
+		t.Fatalf("Address doesn't match. Expected %s, Actual %s", "0.0.0.0", address)
 	}
 }

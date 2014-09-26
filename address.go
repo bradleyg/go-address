@@ -25,6 +25,9 @@ func Get(r *http.Request, header interface{}) (string, error) {
 	switch header.(type) {
 	case string:
 		value = r.Header.Get(header.(string))
+		if value == "" {
+			value = r.RemoteAddr
+		}
 	default:
 		value = r.RemoteAddr
 	}
