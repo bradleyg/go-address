@@ -61,20 +61,3 @@ func TestgetAddrWithNoAddress(t *testing.T) {
 		t.Fatalf("A missing address should return an error")
 	}
 }
-
-// Examples
-
-func ExampleGet() {
-	mux := http.NewServeMux()
-
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		address, err := goaddress.Get(r, nil)
-		if err != nil {
-			panic(err)
-		}
-
-		fmt.Fprintf(w, "Your IP: %s", address)
-	})
-
-	http.ListenAndServe(":8080", mux)
-}
