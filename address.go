@@ -33,7 +33,7 @@ func Get(r *http.Request, header interface{}) (string, error) {
 	}
 
 	addresses := strings.Split(value, ",")
-	address := strings.TrimSpace(addresses[0])
+	address := strings.TrimSpace(addresses[len(addresses)-1])
 
 	idx := strings.LastIndex(address, ":")
 	if idx != -1 {

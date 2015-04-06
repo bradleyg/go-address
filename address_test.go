@@ -50,8 +50,8 @@ func TestGetAddrWithHeader(t *testing.T) {
 		t.Fatalf("%s", err.Error())
 	}
 
-	if address != "1.1.1.1" {
-		t.Fatalf("Address doesn't match. Expected %s, Actual %s", "1.1.1.1", address)
+	if address != "2.2.2.2" {
+		t.Fatalf("Address doesn't match. Expected %s, Actual %s", "2.2.2.2", address)
 	}
 }
 
